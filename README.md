@@ -89,11 +89,8 @@ deploy:
 - Napraviti nalog na [SonarCloud](https://sonarcloud.io) (povezati se sa GitHubom)
 - U gornjem desnom uglu nalazi se dugme *+* gde je potrebno odabrati *Analyze new project* i povezati svoj repozitorijum sa SonarCloudom
 ![Sonar Add New Project](/assets/sonar_add.png)
-- Na GitHub nalogu potrebno je dozvoliti repo za analizu
-![Sonar Repo](/assets/sonar_repo.png)
-- Ići na *Setup*, generisati i sačuvati **Token**
-- Odabrati glavni programski jezik i build alat i dobićete generisanu komandu za pokretanje sonara u mavenu
-![Sonar App](/assets/sonar_analyze.png)
+- Na GitHub nalogu potrebno je dozvoliti repo za analizu (klik na link *GitHub app configuration.* ili na GitHub-u otvoriti *Applications* tab u podešavanjima korisničkog naloga -> pronaći aplikaciju *SonarCloud* i kliknuti na dugme *Configure*)
+- U podešavanjima korisničkog naloga, u *Security* tabu generisati i sačuvati **Token**
 - U Travis konfiguraciju dodati *Environment Variable* SONAR_TOKEN i PROJECT_KEY
 ![Travis CI Sonar Env Var](/assets/travis_ci_sonar_vars.png)
 - Ažurirati `.travis.yml` fajl
@@ -116,7 +113,7 @@ addons:
 
 script:
   - ./mvnw clean install -DskipTests=false -B
-  - ./mvnw sonar:sonar -Dsonar.projectKey=$PROJECT_KEY -Dsonar.organization=stojkovm-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
+  - ./mvnw sonar:sonar -Dsonar.projectKey=$PROJECT_KEY -Dsonar.organization=<naziv_organizacije> -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
 
 dist: trusty
 
