@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/katarinaa94/isa-deployment.svg?branch=master)](https://travis-ci.org/katarinaa94/isa-deployment)
+[![Build Status](https://travis-ci.com/katarinaa94/deployment-example.svg?branch=master)](https://travis-ci.com/katarinaa94/deployment-example)
 
 Uputstvo za povezivanje Spring Boot projekta sa GitHuba sa SonarCloud, TravisCI i Heroku servisima.
 Ovo je okvirno uputstvo koje možda neće svima odraditi posao.
@@ -17,24 +17,31 @@ Možda će nekome pomoći :blush:
 ![Heroku Postgres](/assets/postgres.png)
 - Aktivacijom Postgres baze generisaće se konekcioni parametri koji se mogu sakriti iz konfiguracionih fajlova projekta tako što će se otići na *Settings* tab -> *Reveal Config Vars* -> i upisati kao *key:value* parove
 ![Postgres Credentials](/assets/postgres_creds.png)
+Konekcione parametre možete pročitati tako što ćete u *Resources* tabu kliknuti na *Heroku Postgres* add-on -> *Settings* -> i kliknuti na dugme *View Credentials...* koje se nalazi u *Administration* sekciji.
 ![Heroku Config Vars](/assets/Heroku_config_vars.png)
 - Ažurirati `application.properties` da kredencijali odgovaraju konfiguracionim promenljivama (videti `application.properties` projekta)
 - Ako je projekat upakovan kao `war` fajl, potrebno je dodati fajl sa nazivom `Procfile` (bez ekstenzije) u root folder projekta sa sledećim sadržajem:
+
 ```
   web: java $JAVA_OPTS -jar target/testing-example-0.0.1-SNAPSHOT.war --server.port=$PORT $JAR_OPTS
 ```
+
 - U `application.properties` fajl dodati:
+
 ```
 server.port=${PORT:8080}
 ```
+
 - Ako GitHub ne prepoznaje projekat kao Java project dodati `system.properties` sa sledećim sadržajem:
+
 ```
 java.runtime.version=1.8
 ```
+
 - Na *Deploy* tabu za *Deployment method* odabrati GitHub (najlakša varijanta)
 - U odeljku *App connected to GitHub* odabrati projekat sa GitHuba za koji radite deploy
-- Možete uključiti automatski redeloy koji će se aktivirati pri svakom novom commitu
 - Manualni deploy možete odraditi u sekciji *Manual deploy* gde možete da odaberete granu koju želite da deployujete
+- Možete uključiti automatski redeloy koji će se aktivirati pri svakom novom commitu
 ![Heroku - Github integration](/assets/heroku_github.png)
 - Ukoliko nije aktivan dyno instalirati [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli), ulogovati se kroz terminal i ukucati komandu:
 
@@ -44,13 +51,14 @@ $ heroku ps:scale web=1 --app <naziv_aplikacije>
 
 # TravisCI
 
-- Napraviti nalog na [Travis CI](https://travis-ci.org) (povezati se sa GitHubom)
-- Odabrati repozitorijum koji treba da uđe u CI ciklus
+- Napraviti nalog na [Travis CI](https://travis-ci.com/) (povezati se sa GitHubom)
+- Odabrati repozitorijum koji treba da uđe u CI ciklus: u gornjem desnom uglu klknuti na profilnu sliku -> otvoriti tab *Settings* -> kliknuti na dugme *Manage repositories on GitHub* i odabrati repozitorijum(e) -> kliknuti na *Sync account* dugme -> u *Repositories* delu odabrati repozitorijum
 ![Travis CI Repo](/assets/travisci_repo.png)
 - Na *Settings* tabu projekta dodati *Environment Variablu* kao key:value par Heroku API ključ koji se može naći na Heroku profilu korisnika, na tabu *Account* pod sekcijom *API Key*
 ![Heroku API Key](/assets/heroku_api_key.png)
 ![Travis CI Environment Variables](/assets/travis_ci_vars.png)
 - Napraviti `.travis.yml` fajl u root folderu projekta
+
 ```
 sudo: required
 language: java
@@ -89,6 +97,7 @@ deploy:
 - U Travis konfiguraciju dodati *Environment Variable* SONAR_TOKEN i PROJECT_KEY
 ![Travis CI Sonar Env Var](/assets/travis_ci_sonar_vars.png)
 - Ažurirati `.travis.yml` fajl
+
 ```
 sudo: required
 language: java
@@ -116,7 +125,9 @@ deploy:
   api_key: $HEROKU_API_KEY
   app: <naziv_aplikacije>
 ```
+
 - Ako želite da dodate podršku za Code Coverage potrebno je u `pom.xml` fajl dodati plugin
+
 ```
   <plugin>
     <groupId>org.jacoco</groupId>
@@ -139,6 +150,7 @@ deploy:
     </executions>
   </plugin>
 ```
+
 Kada je sve povezano ili će sve raditi:
 <img src="/assets/bravo.gif" width="250" height="200">
 Ili neće:
