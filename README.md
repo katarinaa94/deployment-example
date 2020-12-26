@@ -93,6 +93,8 @@ deploy:
 - U podešavanjima korisničkog naloga, u *Security* tabu generisati i sačuvati **Token**
 - U Travis konfiguraciju dodati *Environment Variable* SONAR_TOKEN i PROJECT_KEY
 ![Travis CI Sonar Env Var](/assets/travis_ci_sonar_vars.png)
+- Isključiti automatsku analizu: *Administration* -> *Analysis Method*
+![Sonar Analysis Method](/assets/sonar_analysis_method.png)
 - Ažurirati `.travis.yml` fajl
 
 ```
