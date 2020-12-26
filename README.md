@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.com/katarinaa94/deployment-example.svg?branch=master)](https://travis-ci.com/katarinaa94/deployment-example)
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=katarinaa94_deployment-example)](https://sonarcloud.io/dashboard?id=katarinaa94_deployment-example)
 
 Uputstvo za povezivanje Spring Boot projekta sa GitHuba sa SonarCloud, TravisCI i Heroku servisima.
 Ovo je okvirno uputstvo koje možda neće svima odraditi posao.
@@ -97,6 +98,8 @@ deploy:
 - Isključiti automatsku analizu: *Administration* -> *Analysis Method*
 ![Sonar Analysis Method](/assets/sonar_analysis_method.png)
 - Podesiti *New Code definition*
+- Možete u *README.md* ugraditi i SonarCloud *badge*: *Overview* tab -> u donjem desnom uglu se nalazi dugme *Get project badges* -> odabrati željeni format i dodati u *README.md*.
+
 - Ažurirati `.travis.yml` fajl
 
 ```
