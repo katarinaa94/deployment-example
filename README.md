@@ -57,6 +57,7 @@ $ heroku ps:scale web=1 --app <naziv_aplikacije>
 - Na *Settings* tabu projekta dodati *Environment Variablu* kao key:value par Heroku API ključ koji se može naći na Heroku profilu korisnika, na tabu *Account* pod sekcijom *API Key*
 ![Heroku API Key](/assets/heroku_api_key.png)
 ![Travis CI Environment Variables](/assets/travis_ci_vars.png)
+- Možete u *README.md* ugraditi sličicu sa statusom CI ciklusa (eng. *badge*): ![Status Image](/assets/travis_status_image.png)
 - Napraviti `.travis.yml` fajl u root folderu projekta
 
 ```
@@ -95,6 +96,7 @@ deploy:
 ![Travis CI Sonar Env Var](/assets/travis_ci_sonar_vars.png)
 - Isključiti automatsku analizu: *Administration* -> *Analysis Method*
 ![Sonar Analysis Method](/assets/sonar_analysis_method.png)
+- Podesiti *New Code definition*
 - Ažurirati `.travis.yml` fajl
 
 ```
