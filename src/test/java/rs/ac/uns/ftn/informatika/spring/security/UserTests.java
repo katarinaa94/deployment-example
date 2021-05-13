@@ -51,6 +51,6 @@ public class UserTests {
         users = userRepository.findAll();
         users.forEach(listBeforeDelete::add);
 
-        assertThat(listBeforeDelete).hasSize(listAfterAdd.size());
+        assertThat(listBeforeDelete).hasSize(listAfterAdd.size() - 1);
     }
 }
