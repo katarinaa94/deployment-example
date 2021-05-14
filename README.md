@@ -105,7 +105,7 @@ deploy:
 ```
 sudo: required
 language: java
-jdk: oraclejdk8
+jdk: oraclejdk11
 
 services:
   - postgresql
